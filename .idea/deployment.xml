@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" serverName="temp@127.0.0.1:7264" remoteFilesAllowedToDisappearOnAutoupload="false" autoUploadExternalChanges="true">
+    <serverData>
+      <paths name="temp@127.0.0.1:7264">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/temp/PycharmProject/PBVS" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="zhwzhong@127.0.0.1:10010">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/data/zhwzhong/PycharmProjects/PBVS" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="zhwzhong@127.0.0.1:7002">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/data/zhwzhong/PycharmProjects/PBVS" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="zhwzhong@127.0.0.1:7005 (2)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/data/zhwzhong/PycharmProjects/PBVS" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>
