@@ -33,10 +33,7 @@ class NIR(Dataset):
 
         func = lambda x: np.array(x) if self.args.cached and attr == 'train' else x
 
-        self.img_names = [f'{key}.bmp' for key in self.file['LR'].keys()]
-        self.gt_imgs = [func(self.file['GT'].get(key)) for key in self.file['GT'].keys()]
-        self.rgb_imgs = [func(self.file['RGB'].get(key)) for key in self.file['RGB'].keys()]
-        if args.extra_data and attr == 'train':
+        if attr == 'train':
             remove_imgs = ['0168', '0173', '0174', '0175', '0179']
             extra_data = h5py.File('{}/PBVS/track2/extra.h5'.format(root_path))
 
