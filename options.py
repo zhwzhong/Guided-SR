@@ -28,17 +28,6 @@ parser.add_argument('--seed', type=int, default=60)
 parser.add_argument('--num_gpus', type=int, default=2)
 parser.add_argument('--num_workers', type=int, default=0)
 
-# DataSet
-parser.add_argument('--dataset', type=str, default='PBVS') # PBVS NIR
-parser.add_argument('--mean_shift', action='store_true') # 加上均值的差
-parser.add_argument('--psnr_up', type=float, default=0)
-parser.add_argument('--real_data', action='store_true') # MR->HR
-parser.add_argument('--data_range', type=int, default=1) # LR Patch
-parser.add_argument('--cached', action='store_false')
-parser.add_argument('--repeated_aug', action='store_true')
-parser.add_argument('--show_every', type=float, default=20)
-parser.add_argument('--print_freq', type=int, default=1000)
-parser.add_argument('--rgb_norm', action='store_true')
 
 
 # Optimizer
@@ -71,28 +60,12 @@ parser.add_argument('--load_name', type=str, default='model_best.pth')
 
 parser.add_argument('--scale', type=int, default=4)
 parser.add_argument('--batch_size', type=int, default=8)
-parser.add_argument('--patch_size', type=int, default=256) # LR Patch
+parser.add_argument('--patch_size', type=int, default=256) 
 parser.add_argument('--val_batch_size', type=int, default=1)
 
 parser.add_argument('--in_channels', type=int, default=3)
-parser.add_argument('--model_name', type=str, default='Base2') # NAFNet  SWinIR UFormer NAFNet
+parser.add_argument('--model_name', type=str, default='Base2') 
 parser.add_argument('--test_name', type=str, default='val')
-
-# UFormer
-parser.add_argument('--embed_dim', type=int, default=48)
-parser.add_argument('--win_size', type=int, default=8)
-parser.add_argument('--pre_trained', action='store_true')
-# 残差学习
-parser.add_argument('--no_res', action='store_true')
-parser.add_argument('--light_model', action='store_true')
-parser.add_argument('--model_path', type=str, default='')   # For SwinIR
-
-parser.add_argument('--mix_up', action='store_true')
-parser.add_argument('--mix_alpha', type=float, default=0.1)
-parser.add_argument('--self_ensemble', action='store_true')
-parser.add_argument('--ensemble_mode', type=str, default='mean')
-
-parser.add_argument('--tlc_enhance', action='store_true')
 
 # 分布式训练
 
