@@ -33,16 +33,6 @@ class NIR(Dataset):
 
         func = lambda x: np.array(x) if self.args.cached and attr == 'train' else x
 
-        if attr == 'train':
-            remove_imgs = ['0168', '0173', '0174', '0175', '0179']
-            extra_data = h5py.File('{}/PBVS/track2/extra.h5'.format(root_path))
-
-            self.img_names.extend([key for key in extra_data['GT'].keys() if key not in remove_imgs])
-            self.gt_imgs.extend(
-                [func(extra_data['GT'].get(key)) for key in extra_data['GT'].keys() if key not in remove_imgs])
-            self.rgb_imgs.extend(
-                [func(extra_data['RGB'].get(key)) for key in extra_data['RGB'].keys() if key not in remove_imgs])
-
     def __len__(self):
         return int(self.args.show_every * len(self.gt_imgs)) if self.attr == 'train' else len(self.gt_imgs)
 
