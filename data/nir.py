@@ -66,19 +66,3 @@ class NIR(Dataset):
         lr_img, gt_img, rgb_img = augment.np_to_tensor(lr_img, gt_img, rgb_img, input_data_range=1)
 
         return {'img_gt': gt_img, 'img_rgb': rgb_img, 'lr_up': lr_img, 'img_name': self.img_names[item]}
-
-# from options import args
-# from utils import metrics
-# from torch.utils.data import DataLoader
-# from torch.nn.functional import interpolate
-# args.scale = 4
-# args.extra_data = True
-# batch_size = 1
-# nyu_data = DataLoader(NIR(args, 'train'), batch_size=batch_size)
-# print(len(nyu_data))
-# sum_psnr = 0
-# for _, sample in enumerate(nyu_data):
-#     print(sample['img_gt'].shape, sample['img_name'], sample['lr_up'].shape)
-#     sum_psnr += metrics(sample['img_gt'], sample['lr_up'], 0, 1)['PSNR']
-#
-# print(sum_psnr / 9)
