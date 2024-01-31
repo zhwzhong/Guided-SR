@@ -62,32 +62,6 @@ def main():
             print('===> File {} loaded'.format(model_path))
         evaluate(model, criterion, args.test_name, device=device, val_data=get_loader(args, args.test_name), args=args)
 
-    if not args.test_only:
-        for epoch in range(args.start_epoch, num_epochs):
-            if args.distributed:
-                train_data.sampler.set_epoch(epoch)
-            train_stats = train_one_epoch(model, criterion, train_data, optimizer, device, epoch, args)
-            log_stats = {**{f'TRAIN_{k}'.upper(): v for k, v in train_stats.items()}}
-
-            test_stats = evaluate(model, criterion, 'val', device=device, val_data=get_loader(args, 'val'), args=args)
-            log_stats.update({**{f'{k}'.upper(): v for k, v in test_stats.items()}})
-
-            test_stats = evaluate(model, criterion, 'test', device=device, val_data=get_loader(args, 'test'), args=args)
-            log_stats.update({**{f'{k}'.upper(): v for k, v in test_stats.items()}, 'EPOCH': epoch})
-
-            if args.local_rank == 0:
-                [writer.add_scalar(k.replace('_', '/'), v, epoch) for k, v in log_stats.items() if k != 'EPOCH']
-                with open("./logs/{}/{}/log.txt".format(args.dataset, args.file_name), 'a') as f:
-                    f.write(json.dumps(log_stats) + "\n")
-
-            utils.save_on_master({
-                'optimizer': optimizer.state_dict(),
-                'model': model_without_ddp.state_dict(),
-                'lr_scheduler': lr_scheduler.state_dict(),
-                'epoch': epoch,
-                'args': args,
-            }, '{}/model_{}.pth'.format(cp_path, str(epoch).zfill(6)))
-            lr_scheduler.step(epoch)
 
 
 if __name__ == '__main__':
