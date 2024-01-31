@@ -33,10 +33,6 @@ class Loss(nn.Module):
                 loss_func = L1_Charbonnier_loss()
             elif loss_type == 'SmoothL1':
                 loss_func = nn.SmoothL1Loss(reduction='mean')
-            elif loss_type == 'BALoss':
-                loss_func = BALoss()
-            elif loss_type == 'GradientSensitiveLoss':
-                loss_func = GradientSensitiveLoss(channels=1)
             else:
                 raise NotImplementedError
             self.loss.append({'type': loss_type, 'weight': float(weight), 'function': loss_func})
