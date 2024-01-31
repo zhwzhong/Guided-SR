@@ -16,26 +16,6 @@ import utils
 import torch
 import tqdm
 
-def train_one_epoch(model, criterion, train_data, optimizer, device, epoch, args):
-    model.train()
-    criterion.train()
-    metric_logger = utils.MetricLogger(delimiter="  ")
-    metric_logger.add_meter('lr', utils.SmoothedValue(window_size=1, fmt='{value:.6f}'))
-    header = 'Epoch: [{}]'.format(epoch)
-
-    for samples in metric_logger.log_every(train_data, args.print_freq, header):
-        samples = utils.to_device(samples, device)
-        out = model(utils.mix_up(samples, args.mix_alpha) if args.mix_up else samples)
-        loss = criterion(out['img_out'], samples['img_gt'])
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
-        torch.cuda.synchronize()
-        metric_logger.update(loss=loss.item())
-        metric_logger.update(lr=optimizer.param_groups[0]["lr"])
-
-    metric_logger.synchronize_between_processes()
-    return {k: meter.global_avg for k, meter in metric_logger.meters.items()}
 
 
 @torch.no_grad()
